@@ -17,5 +17,4 @@ enum ErrorCases: LocalizedError {
         case .invalidData: return "invalid data"
         }
     }
-    
 }

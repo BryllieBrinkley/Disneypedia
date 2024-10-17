@@ -11,7 +11,7 @@ import Foundation
 
 final class WebServices {
     
-    static func getCharacterData() async throws -> Welcome {
+    static func getCharacterData() async throws -> CharacterListData {
         
         let urlString = "https://api.disneyapi.dev/character"
         guard let url = URL(string: urlString) else {
@@ -25,20 +25,9 @@ final class WebServices {
         
         do {
             let decoder = JSONDecoder()
-            return try decoder.decode(Welcome.self, from: data)
+            return try decoder.decode(CharacterListData.self, from: data)
         } catch {
             throw ErrorCases.invalidData
         }
-    }
-    
-    
-    static func characterDetailData() 
-    
-    
-    
-    
-    
-    
-    
-    
+    }   
 }

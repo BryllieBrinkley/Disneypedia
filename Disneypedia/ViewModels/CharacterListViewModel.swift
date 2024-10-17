@@ -11,7 +11,7 @@ import Foundation
 @MainActor
 final class CharacterListViewModel: ObservableObject {
     
-    @Published var characters: Welcome?
+    @Published var characters: CharacterListData?
     @Published var errorMessage: String?
     @Published var name: String?
     @Published var imageURL: String?
@@ -27,23 +27,4 @@ final class CharacterListViewModel: ObservableObject {
             self.errorMessage = error.localizedDescription
         }
     }
-    
-
-//    func printCharacterNames() {
-//        if let charactersData = characters?.data {
-//            for character in charactersData {
-//                if let name = character.name {
-//                    print("Character name: \(name)")
-//                } else {
-//                    print("Character name is nil")
-//                }
-//            }
-//        }
-//    }
-    
-    
-    
-    
 }
-
-
