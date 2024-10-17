@@ -11,7 +11,7 @@ import SwiftUI
 struct DisneypediaApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CharacterListView()
         }
     }
 }
