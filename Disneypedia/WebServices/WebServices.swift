@@ -29,5 +29,27 @@ final class WebServices {
         } catch {
             throw ErrorCases.invalidData
         }
-    }   
+    }
+    
+    static func getCharacterDetails(characterID: String) async throws -> CharacterData {
+        
+        let urlString = "https://api.disneyapi.dev/character/\(characterID)"
+        guard let url = URL(string: urlString) else {
+            throw ErrorCases.invalidURL
+        }
+        
+        let (data,response) = try await URLSession.shared.data(from: url)
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw ErrorCases.invalidResponse
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            return try decoder.decode(CharacterData.self, from: data)
+        } catch {
+            throw ErrorCases.invalidData
+        }
+
+    }
+    
 }

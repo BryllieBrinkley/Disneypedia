@@ -12,18 +12,25 @@ import Foundation
 final class CharacterListViewModel: ObservableObject {
     
     @Published var characters: CharacterListData?
+    @Published var CharacterDetails: CharacterData?
     @Published var errorMessage: String?
-    @Published var name: String?
-    @Published var imageURL: String?
     
     func getCharacters() async {
         do {
             let characters = try await WebServices.getCharacterData()
             self.characters = characters
-            self.name = characters.data?[0].name
-            self.imageURL = characters.data?[0].imageURL
-            
         } catch(let error) {
+            self.errorMessage = error.localizedDescription
+        }
+    }
+    
+    
+    func getCharacterDetails(characterID: String?) async {
+        do {
+            let characterDetails = try await WebServices.getCharacterDetails(characterID: characterID ?? "308")
+            self.CharacterDetails = characterDetails
+ 
+        } catch {
             self.errorMessage = error.localizedDescription
         }
     }
